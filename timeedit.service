@@ -1,0 +1,8 @@
+[Unit]
+Description=TimeEdit bot
+
+[Service]
+ExecStart=/opt/timeedit/timeedit.py
+
+[Install]
+WantedBy=default.target
