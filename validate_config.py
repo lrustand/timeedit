@@ -1,7 +1,8 @@
+#!/usr/bin/python
 import sys
 
 # Importerer config
-from config import *
+exec(open(sys.argv[1], "r").read())
 
 errors=0
 
@@ -51,7 +52,7 @@ elif int(SLUTTID.replace(":","")) < 830 or int(SLUTTID.replace(":","")) > 2100:
     errors+=1
 
 if errors:
-    print(f"\nERROR! {errors} feil oppdaget! Vennligst sjekk config.py")
+    print(f"\nERROR! {errors} feil oppdaget! Vennligst sjekk configen \"{sys.argv[1]}\"")
     sys.exit(1)
 else:
     print("Alt ser bra ut")
