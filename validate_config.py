@@ -36,12 +36,18 @@ if not STARTTID:
 elif len(STARTTID)!=5 or STARTTID[2]!=":" or not STARTTID.replace(":","").isnumeric():
     print("STARTTID har feil format.")
     errors+=1
+elif int(STARTTID.replace(":","")) < 800 or int(STARTTID.replace(":","")) > 2030:
+    print("Ugyldig klokkeslett for STARTTID")
+    errors+=1
 
 if not SLUTTID:
     print("SLUTTID er ikke satt.")
     errors+=1
 elif len(SLUTTID)!=5 or SLUTTID[2]!=":" or not SLUTTID.replace(":","").isnumeric():
     print("SLUTTID har feil format.")
+    errors+=1
+elif int(SLUTTID.replace(":","")) < 830 or int(SLUTTID.replace(":","")) > 2100:
+    print("Ugyldig klokkeslett for SLUTTID")
     errors+=1
 
 if errors:
