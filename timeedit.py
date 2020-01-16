@@ -171,9 +171,20 @@ def run():
 
 
 # Åpne alle konfigurasjonsfiler fra ./config/ og kjør reservasjoner for de
-config_dir = dirname(realpath(__file__))+"/config"
+script_dir = dirname(realpath(__file__))
+config_dir = script_dir + "/config"
+
 config_files = [f for f in listdir(config_dir) if isfile(join(config_dir, f))]
+
 for config_file in config_files:
     if config_file[-3:] == ".py":
-        exec(open(config_dir+"/"+config_file, "r").read())
-        run()
+        conf = config_dir+"/"+config_file
+
+        # Validerer config
+        ret = os.system(script_dir + "/" + "validate_config.py " + conf)
+        if ret == 0:
+            # Kjører config
+            exec(open(conf, "r").read())
+            run()
+        else:
+            print("Hopper over invalid config")
