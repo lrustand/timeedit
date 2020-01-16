@@ -11,11 +11,11 @@ install:
 	@echo "----------------------------"
 	install -d /opt/timeedit/
 	install -m 755 timeedit.py $(DESTDIR)$(PREFIX)/opt/timeedit/
-	install -m 755 config.py $(DESTDIR)$(PREFIX)/opt/timeedit/
+	install -m 644 config.py $(DESTDIR)$(PREFIX)/opt/timeedit/
 	@echo -e "\nInstallerer service og timer"
 	@echo "----------------------------"
-	install -m 755 timeedit.service /usr/lib/systemd/system/
-	install -m 755 timeedit.timer /usr/lib/systemd/system/
+	install -m 644 timeedit.service /usr/lib/systemd/system/
+	install -m 644 timeedit.timer /usr/lib/systemd/system/
 
 uninstall:
 	@echo -e "\nFjerner skript og config"
