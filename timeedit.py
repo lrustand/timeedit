@@ -125,7 +125,7 @@ def run():
                 if "opptatt" in errormessage:
                     if BRUKERNAVN in errormessage:
                         print(f"Brukernavn {BRUKERNAVN} har allerede en annen bestilling på samme klokkeslett.")
-                        sys.exit(1)
+                        return
 
                     elif len(ROM) > 1:
                         print("Rommet er opptatt, prøver neste rom")
@@ -134,7 +134,7 @@ def run():
 
                     else:
                         print("Ingen av de spesifiserte rommene er ledig til dette tidspunktet")
-                        sys.exit(1)
+                        return
 
                 elif "overskredet" in errormessage:
                     sys.exit(1)
@@ -146,7 +146,7 @@ def run():
                         print("Prøver igjen")
                     else:
                         print("Maks antall forsøk er oppbrukt. Avslutter.")
-                        sys.exit(1)
+                        return
 
         # Hvis bruker avbryter programmet, avslutt med kode 130
         except KeyboardInterrupt:
@@ -165,7 +165,7 @@ def run():
                 print("Prøver igjen...")
             else:
                 print("Maks antall forsøk er oppbrukt. Avslutter.")
-                sys.exit(1)
+                return
 
         # Lukker nettleseren før vi prøver igjen
         driver.close()
