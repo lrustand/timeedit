@@ -20,7 +20,8 @@ def run():
     weekday = datetime.today().weekday()
     if weekday != UKEDAG:
         print(f"Reservasjon skal gjøres på ukedag {UKEDAG}, men i dag er det {weekday}")
-        sys.exit(1)
+        print("Hopper over denne configen")
+        return
 
     tries = 0
     maxtries = 5
