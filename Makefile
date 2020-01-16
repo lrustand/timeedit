@@ -1,10 +1,7 @@
-.PHONY: check install uninstall
+.PHONY: default install uninstall
 
-check:
-	@echo -e "\nSjekker config"
-	@echo "--------------"
-	python validate_config.py
-	@echo '\nKjør "sudo systemctl enable timeedit.timer" for å enable timeren'
+default:
+	@echo 'Installeres ved å kjøre "sudo make install"'
 
 install:
 	@echo -e "\nInstallerer script og config"
