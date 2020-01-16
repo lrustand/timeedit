@@ -187,6 +187,13 @@ for config_file in config_files:
         if ret == 0:
             # Kjører config
             exec(open(conf, "r").read())
+            print(f"Kjører reservasjon fra {config_file}")
+            print(f"BRUKERNAVN: {BRUKERNAVN}")
+            print(f"ROM: {ROM}")
+            print(f"UKEDAG: {UKEDAG}")
+            print(f"STARTTID: {STARTTID}")
+            print(f"SLUTTID: {SLUTTID}")
+            print(f"EPOST: {EPOST}")
             run()
         else:
-            print("Hopper over invalid config")
+            print(f"Hopper over invalid config {config_file}")
