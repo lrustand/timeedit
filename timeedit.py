@@ -10,7 +10,7 @@ from time import sleep
 from datetime import datetime
 import logging
 import sys
-from os import listdir
+from os import listdir, system
 from os.path import realpath, dirname, isfile, join
 
 
@@ -181,7 +181,7 @@ for config_file in config_files:
         conf = config_dir+"/"+config_file
 
         # Validerer config
-        ret = os.system(script_dir + "/" + "validate_config.py " + conf)
+        ret = system(script_dir + "/" + "validate_config.py " + conf)
         if ret == 0:
             # Kjører config
             exec(open(conf, "r").read())
