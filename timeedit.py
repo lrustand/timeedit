@@ -15,6 +15,8 @@ from os.path import realpath, dirname, isfile, join
 
 
 def run():
+    global ROM
+
     # Sjekker om det er riktig dag å kjøre på
     # Dette bør endres til å heller holde styr på om det er gjort reservasjon allerede
     weekday = datetime.today().weekday()
