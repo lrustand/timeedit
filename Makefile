@@ -10,8 +10,9 @@ install:
 	@echo -e "\nInstallerer script og config"
 	@echo "----------------------------"
 	install -d /opt/timeedit/
+	install -d /opt/timeedit/config/
 	install -m 755 timeedit.py /opt/timeedit/
-	install -m 644 config.py /opt/timeedit/
+	install -m 644 config.py.default /opt/timeedit/
 	@echo -e "\nInstallerer service og timer"
 	@echo "----------------------------"
 	install -m 644 timeedit.service /usr/lib/systemd/system/
@@ -21,8 +22,8 @@ uninstall:
 	@echo -e "\nFjerner skript og config"
 	@echo "------------------------"
 	rm /opt/timeedit/timeedit.py
-	rm /opt/timeedit/config.py
-	rmdir /opt/timeedit
+	rm /opt/timeedit/config.py.default
+	rmdir /opt/timeedit || true
 	@echo -e "\nDisabler service og timer"
 	@echo "-------------------------"
 	systemctl disable timeedit.service
