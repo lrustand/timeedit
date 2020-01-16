@@ -108,7 +108,8 @@ def run():
                         # Fyll inn epostadresse og send inn
                         sleep(5)
                         driver.find_element_by_id("sendmailaddresses").clear()
-                        driver.find_element_by_id("sendmailaddresses").send_keys(EPOST)
+
+                        driver.find_element_by_id("sendmailaddresses").send_keys("\n".join(EPOST))
                         driver.find_element_by_id("sendmailbutton").click()
 
                     except:
