@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
 from time import sleep
+from datetime import datetime
 import logging
 import sys
 import importlib
@@ -13,6 +14,13 @@ import importlib
 
 # Import config file
 from config import *
+
+# Sjekker om det er riktig dag å kjøre på
+# Dette bør endres til å heller holde styr på om det er gjort reservasjon allerede
+weekday = datetime.today().weekday()
+if weekday != UKEDAG:
+    print(f"Reservasjon skal gjøres på ukedag {UKEDAG}, men i dag er det {weekday}")
+    sys.exit(1)
 
 tries = 0
 maxtries = 5
