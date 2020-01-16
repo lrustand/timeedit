@@ -9,11 +9,9 @@ from time import sleep
 from datetime import datetime
 import logging
 import sys
-import importlib
-
 
 # Import config file
-from config import *
+exec(open("config.py","r").read())
 
 # Sjekker om det er riktig dag å kjøre på
 # Dette bør endres til å heller holde styr på om det er gjort reservasjon allerede
