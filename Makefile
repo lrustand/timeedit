@@ -12,7 +12,7 @@ install:
 	install -d /opt/timeedit/
 	install -d /opt/timeedit/config/
 	install -m 755 timeedit.py /opt/timeedit/
-	install -m 644 config.py.default /opt/timeedit/config/
+	install -m 644 config/config.py.default /opt/timeedit/config/
 	@echo -e "\nInstallerer service og timer"
 	@echo "----------------------------"
 	install -m 644 timeedit.service /usr/lib/systemd/system/
