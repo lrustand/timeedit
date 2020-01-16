@@ -9,9 +9,11 @@ from time import sleep
 from datetime import datetime
 import logging
 import sys
+from os.path import realpath, dirname
 
-# Import config file
-exec(open("config.py","r").read())
+# Åpne config fil i samme mappe som hovedscriptet
+config_file = dirname(realpath(__file__))+"/config.py"
+exec(open(config_file, "r").read())
 
 # Sjekker om det er riktig dag å kjøre på
 # Dette bør endres til å heller holde styr på om det er gjort reservasjon allerede
