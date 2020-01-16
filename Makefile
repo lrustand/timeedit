@@ -10,8 +10,8 @@ install:
 	@echo -e "\nInstallerer script og config"
 	@echo "----------------------------"
 	install -d /opt/timeedit/
-	install -m 755 timeedit.py $(DESTDIR)$(PREFIX)/opt/timeedit/
-	install -m 644 config.py $(DESTDIR)$(PREFIX)/opt/timeedit/
+	install -m 755 timeedit.py /opt/timeedit/
+	install -m 644 config.py /opt/timeedit/
 	@echo -e "\nInstallerer service og timer"
 	@echo "----------------------------"
 	install -m 644 timeedit.service /usr/lib/systemd/system/
