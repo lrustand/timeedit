@@ -1,3 +1,7 @@
+# Dette er en eksempelkonfigurasjon. Kopier denne filen og lagre den med filendelse ".py".
+# Alle filer med filendelse ".py" i denne mappen vil bli kjørt som konfigurasjonsfil.
+# Hvis du skal ha forskjellige reservasjoner må du lage en konfigurasjonsfil for hver faste reservasjon.
+# TimeEdit tillater opptil 3 reservasjoner á 4 timer per uke.
 
 # Innloggingsdetaljer for feide
 BRUKERNAVN = "Studentnummeret ditt"
