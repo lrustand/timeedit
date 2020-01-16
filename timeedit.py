@@ -4,6 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 from time import sleep
 from datetime import datetime
@@ -27,7 +28,10 @@ maxtries = 5
 while 1:
     try:
         # Åpne nettleser
-        driver = webdriver.Firefox()
+        options = FirefoxOptions()
+        options.add_argument("--headless")
+        driver = webdriver.Firefox(options=options)
+
 
         # Logger inn på min usn
         driver.get("https://min.usn.no/")
