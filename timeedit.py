@@ -14,6 +14,11 @@ from os import listdir, system
 from os.path import realpath, dirname, isfile, join
 
 
+logfile = open("/var/log/timeedit.log","a")
+def log(message):
+    print(message)
+    logfile.write(message+"\n")
+
 def run():
     global ROM
 
@@ -21,8 +26,8 @@ def run():
     # Dette bør endres til å heller holde styr på om det er gjort reservasjon allerede
     weekday = datetime.today().weekday()
     if weekday != UKEDAG:
-        print(f"Reservasjon skal gjøres på ukedag {UKEDAG}, men i dag er det {weekday}")
-        print("Hopper over denne configen")
+        log(f"Reservasjon skal gjøres på ukedag {UKEDAG}, men i dag er det {weekday}")
+        log("Hopper over denne configen")
         return
 
     tries = 0
@@ -96,7 +101,7 @@ def run():
 
             # Hvis ikke TimeEdit viser noen feilmelding er forhåpentligvis alt OK
             except NoSuchElementException:
-                print("Suksess! Rommet er nå forhåpentligvis blitt booket.")
+                log("Suksess! Rommet er nå forhåpentligvis blitt booket.")
 
                 if EPOST:
                     try:
@@ -116,43 +121,43 @@ def run():
                         driver.find_element_by_id("sendmailbutton").click()
 
                     except:
-                        print("Klarte ikke å registrere epostbekreftelse, men reservasjonen bør likevel være gjennomført")
+                        log("Klarte ikke å registrere epostbekreftelse, men reservasjonen bør likevel være gjennomført")
 
                 # Avslutt uten feilkode
                 break
 
             # Hvis TimeEdit gir feilmelding ved registrering, prøv et annet rom eller avslutt
             else:
-                print(errormessage)
+                log(errormessage)
                 if "opptatt" in errormessage:
                     if BRUKERNAVN in errormessage:
-                        print(f"Brukernavn {BRUKERNAVN} har allerede en annen bestilling på samme klokkeslett.")
+                        log(f"Brukernavn {BRUKERNAVN} har allerede en annen bestilling på samme klokkeslett.")
                         return
 
                     elif len(ROM) > 1:
-                        print("Rommet er opptatt, prøver neste rom")
+                        log("Rommet er opptatt, prøver neste rom")
                         ROM = ROM[1:]
                         tries = 0 # Resett antall forsøk før vi begynner på neste rom
 
                     else:
-                        print("Ingen av de spesifiserte rommene er ledig til dette tidspunktet")
+                        log("Ingen av de spesifiserte rommene er ledig til dette tidspunktet")
                         return
 
                 elif "overskredet" in errormessage:
                     sys.exit(1)
 
                 else:
-                    print("En ukjent feil oppsto")
+                    log("En ukjent feil oppsto")
                     tries += 1
                     if tries<maxtries:
-                        print("Prøver igjen")
+                        log("Prøver igjen")
                     else:
-                        print("Maks antall forsøk er oppbrukt. Avslutter.")
+                        log("Maks antall forsøk er oppbrukt. Avslutter.")
                         return
 
         # Hvis bruker avbryter programmet, avslutt med kode 130
         except KeyboardInterrupt:
-            print("Mottok KeyboardInterrupt. Avslutter.")
+            log("Mottok KeyboardInterrupt. Avslutter.")
             sys.exit(130)
 
         # Hvis vi fanger en sys.exit() må vi kalle den på nytt.
@@ -164,9 +169,9 @@ def run():
             logging.exception("En feil oppsto under reservering!")
             tries += 1
             if tries<maxtries:
-                print("Prøver igjen...")
+                log("Prøver igjen...")
             else:
-                print("Maks antall forsøk er oppbrukt. Avslutter.")
+                log("Maks antall forsøk er oppbrukt. Avslutter.")
                 return
 
         # Lukker nettleseren før vi prøver igjen
@@ -189,13 +194,13 @@ for config_file in config_files:
         if ret == 0:
             # Kjører config
             exec(open(conf, "r").read())
-            print(f"Kjører reservasjon fra {config_file}")
-            print(f"BRUKERNAVN: {BRUKERNAVN}")
-            print(f"ROM: {ROM}")
-            print(f"UKEDAG: {UKEDAG}")
-            print(f"STARTTID: {STARTTID}")
-            print(f"SLUTTID: {SLUTTID}")
-            print(f"EPOST: {EPOST}")
+            log(f"Kjører reservasjon fra {config_file}")
+            log(f"BRUKERNAVN: {BRUKERNAVN}")
+            log(f"ROM: {ROM}")
+            log(f"UKEDAG: {UKEDAG}")
+            log(f"STARTTID: {STARTTID}")
+            log(f"SLUTTID: {SLUTTID}")
+            log(f"EPOST: {EPOST}")
             run()
         else:
-            print(f"Hopper over invalid config {config_file}")
+            log(f"Hopper over invalid config {config_file}")
