@@ -44,6 +44,10 @@ def run():
             driver.get("https://min.usn.no/")
             driver.find_element_by_id("feide_form").submit()
             sleep(5)
+            driver.find_element_by_id("org_selector_filter").send_keys("Universit\n\n")
+            sleep(1)
+            driver.find_element_by_id("selectorg_button").submit()
+            sleep(5)
             driver.find_element_by_id("username").send_keys(BRUKERNAVN)
             driver.find_element_by_id("password").send_keys(PASSORD)
             driver.find_element_by_name("f").submit()
@@ -55,7 +59,7 @@ def run():
 
 
             # Åpner timeedit
-            driver.get(link)
+            driver.get("https://cloud.timeedit.net/usn/web/rombooking/ri1Q5002.html")
             sleep(5)
             driver.find_element_by_partial_link_text("innlogging").click()
 
